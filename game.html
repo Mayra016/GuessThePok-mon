@@ -20,4 +20,12 @@
         </div>
     </div>
 </body>
+
+<!-- Script que importa el archivo config.js y muestra el valor en la consola -->
+<script type="module">
+    import config from '../config/config.js';
+    import getImage from '../service/APIAuth.js';
+    console.log("API URL:", config.API_URL);  // Muestra la API URL en la consola
+    getImage();
+</script>
 </html>
