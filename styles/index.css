@@ -1,0 +1,108 @@
+:root {
+    --light-blue: #68c6e0;
+    --dark-blue: #065d8a ;
+    --red: #d91111;
+    --yelow: #ffcb05;
+}
+
+body {
+    margin: 20px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* FONTS */
+
+@font-face {
+    font-family: 'Big-pixel';
+    src: url('../Fonts/Big-pixel.otf') format('opentype'); 
+}
+
+@font-face {
+    font-family: 'Pokemon';
+    src: url('../Fonts/Pokemon.ttf') format('truetype');
+}
+
+main {
+    text-align: center;
+    justify-content: center;
+
+}
+
+.title {
+    font-family: 'Pokemon';
+    color: var(--yelow);
+    -webkit-text-stroke: 3px var(--dark-blue);
+    font-size: 40px;
+    letter-spacing: 4px;
+    text-shadow: 
+        2px 2px 0 var(--dark-blue), /* SHADOWS */
+        4px 4px 0 var(--dark-blue), 
+        6px 6px 5px rgba(0, 0, 0, 0.5);    
+    
+}
+
+.help-text {
+    font-family: 'Big-pixel';
+    color: black;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+/* ELEMENT  STYLES */
+
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.languages {
+    transition: transform .2s;
+    align-items: center;
+    background-color: transparent;
+    width: fit-content;
+    height: fit-content;
+    border: var(--dark-blue);
+    border-radius: 20px;
+}
+
+
+.game-info {
+    flex-direction: column;
+    text-align: center;
+    border-radius: 15px;
+    width: 50%;
+    padding: 30px;
+
+}
+
+.game-info h1{
+    margin-bottom: 10px;
+}
+
+.play {
+    transition: transform .2s;
+    background-color: var(--yellow);
+    border-color: var(--dark-blue);
+    border-radius: 10px;
+    width: fit-content;
+    height: auto;
+    padding: 2px 15px;
+    margin-top: 20px;
+    font-family: 'Pokemon';
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: var(--yelow);
+    -webkit-text-stroke: 2px var(--dark-blue);
+    border-color: var(--dark-blue);
+    border-width: 6px;
+    background-color: var(--light-blue);
+    text-shadow: 
+    2px 2px 0 var(--dark-blue), /* SHADOWS */
+    4px 4px 0 var(--dark-blue), 
+    6px 6px 5px rgba(0, 0, 0, 0.5);    
+    box-shadow: 2px 2px 5px var(--dark-blue); 
+}

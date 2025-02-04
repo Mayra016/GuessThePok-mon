@@ -1,0 +1,43 @@
+:root {
+    --light-blue: #68c6e0;
+    --dark-blue: #065d8a ;
+    --red: #d91111;
+    --yelow: #ffcb05;
+}
+
+body {
+    margin: 20px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.game {
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+.search-bar{
+    border-radius: 10px;
+    width: 40%;
+    height: 50px;
+    padding: 10px 15px;
+}
+
+.search-bar:focus {
+    border-color: var(--dark-blue);
+}
+
+.search-bar::placeholder {
+    font-family: 'Big-pixel';
+}
+
+.send {
+    font-size: 25px;
+    height: fit-content;
+    padding-top: 3px;
+    margin: 0;
+    margin-left: 20px;
+}
