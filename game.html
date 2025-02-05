@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="/styles/index.css">
     <link rel="stylesheet" href="/styles/game.css">
     <title>Who's that Pokémon?</title>
+    <!-- Add jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Add jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css2?family=Big+Pixel&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="page-content">
@@ -17,34 +24,91 @@
             <div class="div-image">
                 <img class="pokémon-tcg-card blured" src="" alt="card image">
             </div>
-            <input type="text" class="search-bar" placeholder="Enter the Pokémon's name">
-            <button class="play send">Send</button>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-bar" placeholder="Enter the Pokémon's name">
+                <ul id="suggestions" class="suggestions"></ul>
+            </div>
+            <button class="play send" onclick="isCorrect()">Send</button>
         </div>
     </div>
-</body>
 
-<script type="module">
-    import config from '../config/config.js';
-    import getImage from '../service/APIAuth.js'; 
+    <script type="module">
+        import config from '../config/config.js';
+        import getImage from '../service/APIAuth.js'; 
+        import getAllCards from '../service/APIAllCards.js'; 
 
-    console.log("API URL:", config.API_URL);  
+        console.log("API URL:", config.API_URL);  
 
-    function menu() {
-        window.location.href='index.html';
-    }
+        var indexes = [];
+        var cardImg = document.querySelector(".pokémon-tcg-card");
+        var searchBar = document.querySelector(".search-bar");
+        var cardSet;
+        var score = 0;
+        var tries = 0;
 
-    async function loadImage() {
-        const imageUrl = await getImage(); 
-        console.log("Image URL:", imageUrl);
-
-        if (imageUrl) {
-            const cardImg = document.querySelector(".pokémon-tcg-card");
-            cardImg.src = imageUrl;
-        } else {
-            console.error("No image URL received.");
+        function menu() {
+            window.location.href = 'index.html';
         }
-    }
 
-    loadImage();
-</script>
+        async function loadAllCards() {
+            cardSet = await getAllCards();
+
+            if (!cardSet || !cardSet.data || cardSet.data.length === 0) {
+                console.error("No Pokémon cards found.");
+                return;
+            }
+
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * cardSet.data.length);
+            } while (indexes.includes(randomIndex));
+
+            indexes.push(randomIndex);
+            cardImg.src = cardSet.data[randomIndex].images.small;
+
+            console.log("Card name:", cardSet.data[randomIndex].name);
+        }
+
+        // Autocomplete logic with jQuery UI consuming loaded cards data to spare API calls
+        $(function() {
+            // Wait for the cards to be loaded before initializing the autocomplete
+            loadAllCards().then(() => {
+                $("#searchInput").autocomplete({
+                    source: function(request, response) {
+                        const query = request.term.toLowerCase(); 
+                        // Remove repeated names
+                        const uniqueCardNames = new Set(cardSet.data.map(card => card.name.toLowerCase()));
+
+                        // Filter cards that begins with user's input
+                        const filteredCards = Array.from(uniqueCardNames).filter(name => name.startsWith(query));
+
+                        response(filteredCards);
+                    },
+                    open: function() {
+                        $(this).autocomplete("widget").css("width", "auto");
+                    },
+                    select: function(event, ui) {
+                        // Update search bar value
+                        const selectedCard = cardSet.data.find(card => card.name === ui.item.value);
+                        if (selectedCard) {
+                            searchBar.value = selectedCard.name; 
+                            $("#suggestions").empty(); 
+                        }
+                    }
+                });
+            });
+        });
+
+        // Verify answer
+        function isCorrect() {
+            if (searchBar.value == cardSet.data[randomIndex].name) {
+                score += 10 - tries > 1 ? 10 - tries : 1;
+                tries = 0;
+            } else {
+                tries++;
+            }
+        }
+
+    </script>
+</body>
 </html>

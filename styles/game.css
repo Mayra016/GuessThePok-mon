@@ -5,12 +5,15 @@
     --yelow: #ffcb05;
 }
 
+
 body {
     margin: 20px;
     padding: 0px;
     display: flex;
     flex-direction: column;
     text-align: center;
+    font-family: 'Big-pixel';
+    font-size: 15px;
 }
 
 .game {
@@ -37,6 +40,62 @@ body {
 }
 
 .search-bar::placeholder {
+    font-family: 'Big-pixel';
+}
+
+#searchInput {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Big-pixel';
+}
+
+.suggestions {
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    position: absolute;
+    width: 40%;
+    z-index: 1000;
+    left: 0; 
+    top: 70px; 
+    font-family: 'Big-pixel';
+}
+
+
+#suggestions {
+    position: absolute;
+    background-color: #fff;
+    border: none;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 40%;
+    z-index: 10;
+    font-family: 'Big-pixel' !important;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    font-family: 'Big-pixel' !important;
+}
+
+.suggestion-item:hover {
+    background-color: #ffffff;
+}
+
+.suggestion-item img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+ul {
     font-family: 'Big-pixel';
 }
 
