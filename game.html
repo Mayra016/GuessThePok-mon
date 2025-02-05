@@ -24,11 +24,18 @@
             <div class="div-image">
                 <img class="pokémon-tcg-card blured" src="" alt="card image">
             </div>
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-bar" placeholder="Enter the Pokémon's name">
-                <ul id="suggestions" class="suggestions"></ul>
+            <div class="input-container">
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-bar" placeholder="Enter the Pokémon's name">
+                    <ul id="suggestions" class="suggestions"></ul>
+                </div>
+                <button class="play send" onclick="isCorrect()">Send</button>
             </div>
-            <button class="play send" onclick="isCorrect()">Send</button>
+
+        </div>
+        <div class="lost">
+            <h1 >Your score was <h1 class="score">30</h1></h1>
+            <button class="play" onclick="playAgain()">Play again</button>
         </div>
     </div>
 
@@ -42,9 +49,12 @@
         var indexes = [];
         var cardImg = document.querySelector(".pokémon-tcg-card");
         var searchBar = document.querySelector(".search-bar");
+        var lost = document.querySelector(".lost");
+        var gameContainer = document.querySelector(".game");
         var cardSet;
         var score = 0;
         var tries = 0;
+        var randomIndex = 0;
 
         function menu() {
             window.location.href = 'index.html';
@@ -58,16 +68,9 @@
                 return;
             }
 
-            let randomIndex;
-            do {
-                randomIndex = Math.floor(Math.random() * cardSet.data.length);
-            } while (indexes.includes(randomIndex));
-
-            indexes.push(randomIndex);
-            cardImg.src = cardSet.data[randomIndex].images.small;
-
-            console.log("Card name:", cardSet.data[randomIndex].name);
+            newLevel();
         }
+
 
         // Autocomplete logic with jQuery UI consuming loaded cards data to spare API calls
         $(function() {
@@ -97,15 +100,44 @@
                     }
                 });
             });
-        });
+        }); 
+
+        function newLevel() {
+            do {
+                randomIndex = Math.floor(Math.random() * cardSet.data.length);
+            } while (indexes.includes(randomIndex));
+
+            indexes.push(randomIndex);
+            cardImg.src = cardSet.data[randomIndex].images.small;
+
+            console.log("Card name:", cardSet.data[randomIndex].name);
+        }
+
+        window.playAgain = function() {
+            indexes = [];
+            score = 0;
+            tries = 0;
+            lost.style.display = "none";
+            gameContainer.style.display = "block";
+        }
 
         // Verify answer
-        function isCorrect() {
-            if (searchBar.value == cardSet.data[randomIndex].name) {
+        window.isCorrect = function() {
+            if (searchBar.value.toLowerCase() == cardSet.data[randomIndex].name.toLowerCase()) {
                 score += 10 - tries > 1 ? 10 - tries : 1;
                 tries = 0;
-            } else {
+                newLevel();
+            }
+
+            if (tries <= 20) {
                 tries++;
+            }
+
+            if (tries > 20) {
+                let scoreValue = document.querySelector(".score");
+                scoreValue.value = score;
+                lost.style.display = "flex";
+                gameContainer.style.display = "none";
             }
         }
 
