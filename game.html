@@ -10,22 +10,41 @@
 <body>
     <div class="page-content">
         <div class="menu">
-            <button class="play">Menu</button>
+            <button class="play" onclick="menu()">Menu</button>
         </div>
         <div class="game">
             <h1 class="title">Who's that pokémon?</h1>
-            <img class="pokémon-tcg-card" src="" alt="">
+            <div class="div-image">
+                <img class="pokémon-tcg-card blured" src="" alt="card image">
+            </div>
             <input type="text" class="search-bar" placeholder="Enter the Pokémon's name">
             <button class="play send">Send</button>
         </div>
     </div>
 </body>
 
-<!-- Script que importa el archivo config.js y muestra el valor en la consola -->
 <script type="module">
     import config from '../config/config.js';
-    import getImage from '../service/APIAuth.js';
-    console.log("API URL:", config.API_URL);  // Muestra la API URL en la consola
-    getImage();
+    import getImage from '../service/APIAuth.js'; 
+
+    console.log("API URL:", config.API_URL);  
+
+    function menu() {
+        window.location.href='index.html';
+    }
+
+    async function loadImage() {
+        const imageUrl = await getImage(); 
+        console.log("Image URL:", imageUrl);
+
+        if (imageUrl) {
+            const cardImg = document.querySelector(".pokémon-tcg-card");
+            cardImg.src = imageUrl;
+        } else {
+            console.error("No image URL received.");
+        }
+    }
+
+    loadImage();
 </script>
 </html>

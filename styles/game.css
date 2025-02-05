@@ -18,12 +18,18 @@ body {
     gap: 30px;
 }
 
+.pokémon-tcg-card {
+    transform: scale(1.5);
+    margin: 80px;
+}
+
 
 .search-bar{
     border-radius: 10px;
     width: 40%;
     height: 50px;
     padding: 10px 15px;
+    margin-top: 30px;
 }
 
 .search-bar:focus {
@@ -40,4 +46,11 @@ body {
     padding-top: 3px;
     margin: 0;
     margin-left: 20px;
+}
+
+
+/* CARD EFFECT */
+
+.blured {
+    filter: blur(10px);
 }
