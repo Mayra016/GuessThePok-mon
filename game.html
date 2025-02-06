@@ -97,11 +97,11 @@
             document.querySelector(".playAgain").innerText = textsEN.playAgain;
         }
 
-
         window.menu = function() {
             window.location.href = 'index.html';
         };
 
+        // Load cards from API
         async function loadAllCards() {
             cardSet = await getAllCards();
 
@@ -144,6 +144,7 @@
             });
         }); 
 
+        // Create new level
         function newLevel() {
             do {
                 randomIndex = Math.floor(Math.random() * cardSet.data.length);

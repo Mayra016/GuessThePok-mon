@@ -11,6 +11,11 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/914/733/219/gengar-pokemon-wallpaper-preview.jpg");
+    background-repeat: cover;
+    height: 100%;
+    background-size: 100%;
+    background-color: blue;
 }
 
 /* FONTS */
@@ -53,18 +58,18 @@ main {
 
 /* ELEMENT  STYLES */
 
-
 button:hover {
     cursor: pointer;
     transform: scale(1.1);
+
 }
 
 .languages {
     transition: transform .2s;
     align-items: center;
     background-color: transparent;
-    width: fit-content;
-    height: fit-content;
+    width: 80px;
+    height: 80px;
     border: var(--dark-blue);
     border-radius: 20px;
 }
@@ -76,7 +81,8 @@ button:hover {
     border-radius: 15px;
     width: 50%;
     padding: 30px;
-
+    background-color: rgba(255, 255, 255, 0.691);
+    margin-top: 50px;
 }
 
 .game-info h1{
