@@ -16,6 +16,11 @@ body {
     font-size: 15px;
 }
 
+.page-content {
+    text-align: center;
+    justify-items: center;
+}
+
 .game {
     display: block;
     flex-direction: column;
@@ -139,6 +144,9 @@ ul {
     align-items: center;
     margin-top: 100px;
     border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.811);
+    width:fit-content;
+    padding: 20px;
 }
 
 .score {
