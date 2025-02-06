@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Add jQuery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="https://fonts.googleapis.com/css2?family=Big+Pixel&display=swap" rel="stylesheet">
 
@@ -22,7 +23,7 @@
         <div class="game">
             <h1 class="title">Who's that pokémon?</h1>
             <div class="div-image">
-                <img class="pokémon-tcg-card blured" src="" alt="card image">
+                <img class="pokémon-tcg-card" src="../assets/Pokéball-loading.gif" alt="card image">
             </div>
             <div class="input-container">
                 <div class="search-container">
@@ -104,10 +105,11 @@
 
         // Load cards from API
         async function loadAllCards() {
-            /*cardSet = await getAllCards();*/
+            cardSet = await getAllCards();
 
             if (!cardSet || !cardSet.data || cardSet.data.length === 0) {
                 console.error("No Pokémon cards found.");
+                
                 cardImg.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWZiNGFhY2dmeHpweW95anliZ2VlOGtwaXAzMXl3Mnp4emF2bGJtMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5hbbS4ZuQggsFE76Lx/giphy.gif";
                 if (language == "EN") {
                     title.innerText = "Server failed to respond, please press F5 or try later.";
@@ -115,7 +117,6 @@
                 if (language == "ES") {
                     title.innerText = "Error: no hubo respuesta del servidor. Por favor, intenta más tarde or presiona F5.";
                 }
-                cardImg.style.filter = `blur(0px)`;
                 return;
             }
 
@@ -160,6 +161,8 @@
             } while (indexes.includes(randomIndex));
 
             indexes.push(randomIndex);
+            cardImg.classList.add("blured");
+            cardImg.style.filter = `blur(${currentBlur}px)`;
             cardImg.src = cardSet.data[randomIndex].images.small;
 
             console.log("Card name:", cardSet.data[randomIndex].name);
