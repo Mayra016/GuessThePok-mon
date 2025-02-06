@@ -104,10 +104,18 @@
 
         // Load cards from API
         async function loadAllCards() {
-            cardSet = await getAllCards();
+            /*cardSet = await getAllCards();*/
 
             if (!cardSet || !cardSet.data || cardSet.data.length === 0) {
                 console.error("No Pokémon cards found.");
+                cardImg.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWZiNGFhY2dmeHpweW95anliZ2VlOGtwaXAzMXl3Mnp4emF2bGJtMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5hbbS4ZuQggsFE76Lx/giphy.gif";
+                if (language == "EN") {
+                    title.innerText = "Server failed to respond, please press F5 or try later.";
+                }
+                if (language == "ES") {
+                    title.innerText = "Error: no hubo respuesta del servidor. Por favor, intenta más tarde or presiona F5.";
+                }
+                cardImg.style.filter = `blur(0px)`;
                 return;
             }
 
