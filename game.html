@@ -17,7 +17,7 @@
 <body>
     <div class="page-content">
         <div class="menu">
-            <button class="play" onclick="menu()">Menu</button>
+            <button class="play menu" onclick="menu()">Menu</button>
         </div>
         <div class="game">
             <h1 class="title">Who's that pokémon?</h1>
@@ -47,6 +47,7 @@
         console.log("API URL:", config.API_URL);  
 
         var indexes = [];
+        var menuBtn = document.querySelector(".menu");
         var cardImg = document.querySelector(".pokémon-tcg-card");
         var searchBar = document.querySelector(".search-bar");
         var lost = document.querySelector(".lost");

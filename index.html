@@ -20,22 +20,25 @@
             <button class="play" onclick="redirect()">Play</button>
         </div>
     </main>
-    <script>
+    <script type="module">
+        import textsES from "../config/translationsES.js";
+        import textsEN from "../config/translationsEN.js";
+
         var language = "EN";
         var title = document.querySelector(".title");
         var helpText = document.querySelector(".help-text");
         var play = document.querySelector(".play");
 
-        function translateES() {
-            title.innerText = "¿Cómo jugar?";
-            helpText.innerText = "Intenta adivinar el pokémon en la carta borrosa \n \u25E6 A cada intento el efecto borroso se va a reducir un poco \n \u25E6 Pierdes si no adivinas el pokémon en 20 intentos en la misma carta";
-            play.innerText = "Jugar";
+        window.translateES =  function() {
+            title.innerText = textsES.titleIndex;
+            helpText.innerText = textsES.helpTextIndex;
+            play.innerText = textsES.playIndex;
         }
 
-        function translateEN() {
-            title.innerText = "How to play?";
-            helpText.innerText = "Try to guess the pokémon displayed in the blurred card \n \u25E6 For each try, the blur will be a little vanished \n \u25E6 You will lose if you can't guess the pokémon in 20 tries in the same card.";
-            play.innerText = "Play";
+        window.translateEN =  function() {
+            title.innerText = textsEN.titleIndex;
+            helpText.innerText = textsEN.helpTextIndex;
+            play.innerText = textsEN.playIndex;
         }
 
         function redirect() {
