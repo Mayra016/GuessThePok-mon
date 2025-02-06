@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/index.css">
-    <link rel="stylesheet" href="/styles/game.css">
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/game.css">
     <title>Who's that Pokémon?</title>
     <!-- Add jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -41,11 +41,11 @@
     </div>
 
     <script type="module">
-        import config from '../config/config.js';
-        import getImage from '../service/APIAuth.js'; 
-        import getAllCards from '../service/APIAllCards.js'; 
-        import textsES from "../config/translationsES.js";
-        import textsEN from "../config/translationsEN.js";
+        import config from './config/config.js';
+        import getImage from './service/APIAuth.js'; 
+        import getAllCards from './service/APIAllCards.js'; 
+        import textsES from "./config/translationsES.js";
+        import textsEN from "./config/translationsEN.js";
 
         console.log("API URL:", config.API_URL);  
         // Get language 
@@ -87,7 +87,7 @@
             searchBar.placeholder = textsES.searchBarPlaceholder;
             sendBtn.innerText = textsES.sendBtn;
             scoreText.innerText = textsES.scoreText;
-            document.querySelector(".playAgain") = textsES.playAgain;
+            document.querySelector(".playAgain").innerText = textsES.playAgain;
         }
 
         window.translationEN = function() {
