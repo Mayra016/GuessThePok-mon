@@ -106,3 +106,7 @@ button:hover {
     6px 6px 5px rgba(0, 0, 0, 0.5);    
     box-shadow: 2px 2px 5px var(--dark-blue); 
 }
+
+main {
+    justify-items: center;
+}

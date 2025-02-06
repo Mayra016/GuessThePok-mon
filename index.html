@@ -9,16 +9,35 @@
 <body>
     <main>
         <div class="flags">
-            <button class="languages" ><img style="height: 120px" src="https://img.icons8.com/?size=100&id=15532&format=png&color=000000" alt="English"></button>
-            <button class="languages"><img src="https://img.icons8.com/?size=100&id=18099&format=png&color=000000" alt="Spanish"></button>    
+            <button class="languages" onclick="translateEN()"><img style="height: 120px" src="https://img.icons8.com/?size=100&id=15532&format=png&color=000000" alt="English"></button>
+            <button class="languages" onclick="translateES()"><img src="https://img.icons8.com/?size=100&id=18099&format=png&color=000000" alt="Spanish"></button>    
         </div>
         <div class="game-info">
             <h1 class="title">How to play?</h1>
-            <h3 class="help-text">Try to guess the pokémon displayed in the blurred card. For each try, the blur will be a little vanished.        </h3>
+            <h3 class="help-text">Try to guess the pokémon displayed in the blurred card<br>
+                &#9702; For each try, the blur will be a little vanished <br>
+                &#9702; You will lose if you can't guess the pokémon in 20 tries in the same card</h3>
             <button class="play" onclick="redirect()">Play</button>
         </div>
     </main>
     <script>
+        var language = "EN";
+        var title = document.querySelector(".title");
+        var helpText = document.querySelector(".help-text");
+        var play = document.querySelector(".play");
+
+        function translateES() {
+            title.innerText = "¿Cómo jugar?";
+            helpText.innerText = "Intenta adivinar el pokémon en la carta borrosa \n \u25E6 A cada intento el efecto borroso se va a reducir un poco \n \u25E6 Pierdes si no adivinas el pokémon en 20 intentos en la misma carta";
+            play.innerText = "Jugar";
+        }
+
+        function translateEN() {
+            title.innerText = "How to play?";
+            helpText.innerText = "Try to guess the pokémon displayed in the blurred card \n \u25E6 For each try, the blur will be a little vanished \n \u25E6 You will lose if you can't guess the pokémon in 20 tries in the same card.";
+            play.innerText = "Play";
+        }
+
         function redirect() {
             window.location.href='game.html';
         }
