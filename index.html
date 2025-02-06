@@ -33,16 +33,18 @@
             title.innerText = textsES.titleIndex;
             helpText.innerText = textsES.helpTextIndex;
             play.innerText = textsES.playIndex;
+            language = "ES";
         }
 
         window.translateEN =  function() {
             title.innerText = textsEN.titleIndex;
             helpText.innerText = textsEN.helpTextIndex;
             play.innerText = textsEN.playIndex;
+            language = "EN";
         }
 
-        function redirect() {
-            window.location.href='game.html';
+        window.redirect = function() {
+            window.location.href = `game.html?lang=${language}`;
         }
     </script>
 </body>
