@@ -126,7 +126,7 @@ ul {
 /* CARD EFFECT */
 
 .blured {
-    filter: blur(10px);
+    filter: blur(15px);
 }
 
 

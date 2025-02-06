@@ -57,6 +57,7 @@
         var score = 0;
         var tries = 0;
         var randomIndex = 0;
+        var currentBlur = 15;
 
 
         // Load page elements
@@ -174,6 +175,10 @@
             }
 
             if (tries <= 20) {
+                if (tries < 7) {
+                    currentBlur -= 1;
+                } 
+                cardImg.style.filter = `blur(${currentBlur}px)`;
                 tries++;
             }
 
