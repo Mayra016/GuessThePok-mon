@@ -160,7 +160,6 @@
             } while (indexes.includes(randomIndex));
 
             indexes.push(randomIndex);
-            cardImg.classList.add("blured");
             cardImg.style.filter = `blur(${currentBlur}px)`;
             cardImg.src = cardSet.data[randomIndex].images.small;
         }
@@ -175,7 +174,7 @@
         }
 
         // Verify answer
-        window.isCorrect = function() {
+        window.isCorrect = async function() {
             if (searchBar.value.toLowerCase() == cardSet.data[randomIndex].name.toLowerCase()) {
                 score += 10 - tries > 1 ? 10 - tries : 1;
                 tries = 0;
@@ -205,6 +204,12 @@
                 isCorrect(); 
             }
         });
+
+        // avoid allowing the player to open the original image in another tab
+        cardImg.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); 
+        });
+
 
 
     </script>
