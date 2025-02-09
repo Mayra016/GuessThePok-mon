@@ -47,7 +47,6 @@
         import textsES from "./config/translationsES.js";
         import textsEN from "./config/translationsEN.js";
 
-        console.log("API URL:", config.API_URL);  
         // Get language 
         const urlParams = new URLSearchParams(window.location.search);
         const language = urlParams.get('lang'); 
@@ -164,8 +163,6 @@
             cardImg.classList.add("blured");
             cardImg.style.filter = `blur(${currentBlur}px)`;
             cardImg.src = cardSet.data[randomIndex].images.small;
-
-            console.log("Card name:", cardSet.data[randomIndex].name);
         }
 
         window.playAgain = function() {
@@ -179,7 +176,6 @@
 
         // Verify answer
         window.isCorrect = function() {
-            console.log("Score before:", score);
             if (searchBar.value.toLowerCase() == cardSet.data[randomIndex].name.toLowerCase()) {
                 score += 10 - tries > 1 ? 10 - tries : 1;
                 tries = 0;
@@ -200,8 +196,6 @@
                 lost.style.display = "flex";
                 gameContainer.style.display = "none";
             }
-
-            console.log("Score after:", score);
         }
 
         // Send answer when the user press the space bar
